@@ -1,16 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 25. 11. 5.
-  Time: 오후 12:03
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>쿠키</title>
 </head>
 <body>
-
+<%
+    //        String counter = "1";
+    int counter = 1;
+    String visited = "";
+    for (Cookie c : request.getCookies()) {
+        String name = c.getName();
+        if (name.equals("visited")) {
+            visited = c.getValue();
+        }
+        if (name.equals("counter")) {
+//                counter = c.getValue();
+            counter = Integer.parseInt(c.getValue());
+        }
+    }
+%>
+<p>
+    <%= counter %>번째 방문
+</p>
+<p>
+    <%= visited %>
+</p>
 </body>
 </html>
