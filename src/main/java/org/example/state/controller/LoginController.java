@@ -31,4 +31,14 @@ public class LoginController extends HttpServlet {
         req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req, resp); // !
         // 외부의 URL은 그대로인 상태에서 뒤에 리소스만 연결 (servlet, jsp)
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 서블릿을 통해서 현재 POST 요청 처리
+        System.out.println(req.getMethod()); // 어떠한 HTTP 메서드(verb, 동사)로 입력했는지
+        System.out.println(req.getParameter("msg"));
+        req.setAttribute("key", "value");
+        req.setAttribute("msg", req.getParameter("msg") + "라고 입력하셨습니다");
+        req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req, resp); // !
+    }
 }
